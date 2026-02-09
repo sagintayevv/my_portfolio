@@ -24,7 +24,7 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' }
+    { name: 'About Me', path: '/about' },
   ]
 
   return (
@@ -36,7 +36,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <Link to="/" className="nav-item">
-            <div className="text-2xl font-bold text-gradient">sagintayevv</div>
+            <div className="text-2xl font-bold ">sagintayevv</div>
           </Link>
           <div className="flex gap-8">
             {navItems.map((item) => (
