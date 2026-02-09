@@ -27,6 +27,17 @@ const About = () => {
   return (
     <div className="min-h-screen pt-32 pb-20 px-6">
       <div ref={contentRef} className="max-w-4xl mx-auto">
+        <h1 className="text-5xl md:text-6xl font-bold mb-8">
+          About <span className="text-gradient">Me</span>
+        </h1>
+
+        <div className="space-y-6 text-gray-300 leading-relaxed mb-12">
+          <p>
+            Hello! I'm a Frontend Developer and nFactorial School graduate with expertise in React, TypeScript, and modern web technologies. 
+            Experienced in building responsive educational platforms and corporate websites. Passionate about creating intuitive user interfaces and writing clean, maintainable code.
+          </p>
+        </div>
+
         <div className="mb-12">
           <h2 className="text-3xl font-bold mb-6">
             Skills & <span className="text-gradient">Technologies</span>
@@ -42,6 +53,7 @@ const About = () => {
             ))}
           </div>
         </div>
+
       </div>
     </div>
   )

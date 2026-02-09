@@ -3,6 +3,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import zerekImg from '../../assets/zerekImg.png'
 import elkonImg from '../../assets/elkonImg.png'
+import todoImg from '../../assets/todoImg.png'
 
 
 
@@ -47,8 +48,7 @@ const Projects = () => {
   const projects: Project[] = [
     {
       title: 'Zerek Edus',
-      description:
-        '',
+      description:'Participated in the development of the front-end component of the Zerek educational platform, designed for online learning. As part of the project, he implemented user interfaces and interactive components to improve the educational experience for students and teachers.',
       image: zerekImg,
       tech: ['Vue2', 'JavaScript', 'Vuetify'],
       links: {
@@ -56,13 +56,21 @@ const Projects = () => {
       },
     },
     {
-      title: 'Elkon KZ',
-      description:
-        '',
+      title: 'Elkon.kz',
+      description:'I developed a corporate website for Elkon KZ from scratch. I created a responsive design using HTML5 and CSS3, and JS, ensuring cross-browser compatibility and performance optimization.',
       image: elkonImg,
       tech: ['JavaScript', 'HTML', 'CSS'],
       links: {
         live: 'https://elkon.kz/ru/o_kompanii',
+      },
+    },
+    {
+      title: 'ToDo App',
+      description:'ToDo app developed as part of the nFactorial School intensive course. Built using React and JavaScript, it includes CRUD operations, task filtering, and local data storage. It implements modern React patterns, including hooks and component composition.',
+      image: todoImg,
+      tech: ['React', 'JavaScript', 'Tailwind'],
+      links: {
+        live: 'https://nfactorialproject4.vercel.app/',
       },
     }
   ]

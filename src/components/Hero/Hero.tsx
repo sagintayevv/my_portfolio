@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/Me.svg'
 
 const Hero = () => {
   const titleRef = useRef<HTMLHeadingElement>(null)
