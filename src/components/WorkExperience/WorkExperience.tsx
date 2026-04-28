@@ -1,19 +1,14 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useLanguage } from '../../context/LanguageContext'
 
 gsap.registerPlugin(ScrollTrigger)
-
-interface ExperienceItem {
-  title: string
-  company: string
-  period: string
-  location: string
-}
 
 const WorkExperience = () => {
   const sectionRef = useRef<HTMLElement>(null)
   const cardsRef = useRef<(HTMLDivElement | null)[]>([])
+  const { t } = useLanguage()
 
   useEffect(() => {
     cardsRef.current.forEach((card, index) => {
@@ -38,30 +33,16 @@ const WorkExperience = () => {
     })
   }, [])
 
-  const experiences: ExperienceItem[] = [
-    {
-      title: 'Entrepreneur',
-      company: 'Qalahood',
-      location: 'Kazakhstan, Astana',
-      period: '2023 - Present',
-    },
-    {
-      title: 'Frontend Developer',
-      company: 'Mediana Services Limited',
-      location: 'Kazakhstan, Aqtau',
-      period: '2022 - 2023',
-    }
-  ]
-
   return (
     <section ref={sectionRef} className="py-20 px-6">
       <div className="max-w-xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-          Work <span className="text-gradient">Experience</span>
+          {t.workExperience.title}{' '}
+          <span className="text-gradient">{t.workExperience.titleHighlight}</span>
         </h2>
 
         <div className="grid grid-cols-1 gap-6">
-          {experiences.map((exp, index) => (
+          {t.workExperience.items.map((exp, index) => (
             <div
               key={index}
               ref={(el) => (cardsRef.current[index] = el)}

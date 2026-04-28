@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { gsap } from 'gsap'
+import { useLanguage } from '../../context/LanguageContext'
+import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const location = useLocation()
+  const { t } = useLanguage()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,8 +26,8 @@ const Navbar = () => {
   }, [])
 
   const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About Me', path: '/about' },
+    { name: t.nav.home, path: '/' },
+    { name: t.nav.about, path: '/about' },
   ]
 
   return (
@@ -38,7 +41,7 @@ const Navbar = () => {
           <Link to="/" className="nav-item">
             <div className="text-2xl font-bold ">sagintayevv</div>
           </Link>
-          <div className="flex gap-8">
+          <div className="flex items-center gap-4 md:gap-8">
             {navItems.map((item) => (
               <Link
                 key={item.name}
@@ -50,6 +53,7 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
+            <LanguageSwitcher />
           </div>
         </div>
       </div>

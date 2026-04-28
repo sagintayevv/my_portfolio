@@ -1,12 +1,14 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import logo from '../../assets/Me.svg'
+import { useLanguage } from '../../context/LanguageContext'
 
 const Hero = () => {
   const titleRef = useRef<HTMLHeadingElement>(null)
   const subtitleRef = useRef<HTMLParagraphElement>(null)
   const descriptionRef = useRef<HTMLParagraphElement>(null)
   const avatarRef = useRef<HTMLDivElement>(null)
+  const { t } = useLanguage()
 
   useEffect(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
@@ -59,21 +61,22 @@ const Hero = () => {
         </div>
         <h2 ref={titleRef} className="inline-block mb-4">
           <span className="text-sm ">
-            Hello! I Am{' '}
-            <span className="text-primary font-semibold">Abat Sagintayevv</span>
+            {t.hero.greeting}{' '}
+            <span className="text-primary font-semibold">{t.hero.name}</span>
           </span>
         </h2>
         <p
           ref={subtitleRef}
           className="text-xl md:text-2xl text-gray-300 font-light mb-2"
         >
-          I'm a <span className="text-gradient font-semibold">Software Engineer</span>
+          {t.hero.rolePrefix}{' '}
+          <span className="text-gradient font-semibold">{t.hero.roleHighlight}</span>
         </p>
         <p
           ref={descriptionRef}
           className="text-xl md:text-2xl text-gray-300 font-light mb-2"
         >
-          I build things for the web. 
+          {t.hero.description}
         </p>
       </div>
     </section>

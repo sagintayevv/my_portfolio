@@ -1,27 +1,30 @@
-import { useEffect, useRef } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import zerekImg from '../../assets/zerekImg.png'
-import elkonImg from '../../assets/elkonImg.png'
-import todoImg from '../../assets/todoImg.png'
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import zerekImg from "../../assets/zerekImg.png";
+import elkonImg from "../../assets/elkonImg.png";
+import todoImg from "../../assets/todoImg.png";
+import qlhdImg from "../../assets/qlhdImg.png";
+import { useLanguage } from "../../context/LanguageContext";
 
+gsap.registerPlugin(ScrollTrigger);
 
-
-gsap.registerPlugin(ScrollTrigger)
-
-interface Project {
-  title: string
-  description: string
-  image: string
-  tech: string[]
+interface ProjectCard {
+  title: string;
+  description: string;
+  image: string;
+  tech: string[];
   links: {
-    github?: string
-    live?: string
-  }
+    github?: string;
+    live?: string;
+    githubLabel: string;
+    liveLabel: string;
+  };
 }
 
 const Projects = () => {
-  const projectsRef = useRef<(HTMLDivElement | null)[]>([])
+  const projectsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const { t } = useLanguage();
 
   useEffect(() => {
     projectsRef.current.forEach((project, index) => {
@@ -35,51 +38,56 @@ const Projects = () => {
             duration: 1,
             scrollTrigger: {
               trigger: project,
-              start: 'top 80%',
-              end: 'bottom 20%',
-              toggleActions: 'play none none reverse',
+              start: "top 80%",
+              end: "bottom 20%",
+              toggleActions: "play none none reverse",
             },
-          }
-        )
+          },
+        );
       }
-    })
-  }, [])
+    });
+  }, []);
 
-  const projects: Project[] = [
+  const projects: ProjectCard[] = [
     {
-      title: 'Zerek Edus',
-      description:'Participated in the development of the front-end component of the Zerek educational platform, designed for online learning. As part of the project, he implemented user interfaces and interactive components to improve the educational experience for students and teachers.',
+      ...t.projects.items[0],
       image: zerekImg,
-      tech: ['Vue2', 'JavaScript', 'Vuetify'],
       links: {
-        live: 'https://zerek.edus.kz/main',
+        ...t.projects.items[0].links,
+        live: "https://zerek.edus.kz/main",
       },
     },
     {
-      title: 'Elkon.kz',
-      description:'I developed a corporate website for Elkon KZ from scratch. I created a responsive design using HTML5 and CSS3, and JS, ensuring cross-browser compatibility and performance optimization.',
+      ...t.projects.items[1],
       image: elkonImg,
-      tech: ['JavaScript', 'HTML', 'CSS'],
       links: {
-        live: 'https://elkon.kz/ru/o_kompanii',
+        ...t.projects.items[1].links,
+        live: "https://elkon.kz/ru/o_kompanii",
       },
     },
     {
-      title: 'ToDo App',
-      description:'ToDo app developed as part of the nFactorial School intensive course. Built using React and JavaScript, it includes CRUD operations, task filtering, and local data storage. It implements modern React patterns, including hooks and component composition.',
+      ...t.projects.items[2],
       image: todoImg,
-      tech: ['React', 'JavaScript', 'Tailwind'],
       links: {
-        live: 'https://nfactorialproject4.vercel.app/',
+        ...t.projects.items[2].links,
+        live: "https://nfactorialproject4.vercel.app/",
       },
-    }
-  ]
+    },
+    {
+      ...t.projects.items[3],
+      image: qlhdImg,
+      links: {
+        ...t.projects.items[3].links,
+        live: "https://www.qalahood.kz/",
+      },
+    },
+  ];
 
   return (
     <section className="py-20 px-6">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">
-          Projects I’ve Worked On
+          {t.projects.title}
         </h2>
 
         <div className="space-y-32">
@@ -88,7 +96,7 @@ const Projects = () => {
               key={index}
               ref={(el) => (projectsRef.current[index] = el)}
               className={`flex flex-col ${
-                index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
               } gap-8 items-center`}
             >
               <div className="w-full md:w-1/2">
@@ -103,8 +111,12 @@ const Projects = () => {
               </div>
 
               <div className="w-full md:w-1/2 space-y-4">
-                <h3 className="text-3xl font-bold text-white">{project.title}</h3>
-                <p className="text-gray-400 leading-relaxed">{project.description}</p>
+                <h3 className="text-3xl font-bold text-white">
+                  {project.title}
+                </h3>
+                <p className="text-gray-400 leading-relaxed">
+                  {project.description}
+                </p>
 
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, techIndex) => (
@@ -126,7 +138,7 @@ const Projects = () => {
                       rel="noopener noreferrer"
                     >
                       <span className="text-2xl">📂</span>
-                      <span>Code</span>
+                      <span>{project.links.githubLabel}</span>
                     </a>
                   )}
                   {project.links.live && (
@@ -137,7 +149,7 @@ const Projects = () => {
                       rel="noopener noreferrer"
                     >
                       <span className="text-2xl">🔗</span>
-                      <span>Live Demo</span>
+                      <span>{project.links.liveLabel}</span>
                     </a>
                   )}
                 </div>
@@ -147,7 +159,7 @@ const Projects = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Projects
+export default Projects;
